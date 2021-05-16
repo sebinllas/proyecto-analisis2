@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Dashboard</title>
+</head>
+<body>
+    <div class="table-container">
+        <table>
+            <thead>
+              <tr>
+                <td>id</td>
+                <td>Name</td>
+                <td>username</td>
+                <td>password</td>
+                <td>Actions</td>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (data) { %>
+                <% for(var i = 0; i < data.length; i++) { %>
+                  <tr>
+                    <td><%= data[i].id %></td>
+                    <td><%= data[i].fullName %></td>
+                    <td><%= data[i].userName %></td>
+                    <td><%= data[i].password %></td>
+                  </tr>
+                <% } %>
+              <% } %>
+            </tbody>
+          </table>
+    </div>
+</body>
+</html>
