@@ -2,12 +2,12 @@ const express = require("express"),
   path = require("path"),
   morgan = require("morgan"),
   mysql = require("mysql"),
-  myConnection = require("express-myconnection");
+  myConnection = require("express-myconnection"),
+  session = require("express-session");
 
 const app = express();
 
-// importing routes
-app.use(require('./routes'))
+
 
 // settings
 app.set("port", process.env.PORT || 3000);
@@ -25,12 +25,22 @@ app.use(
       user: "root",
       password: "",
       port: 3306,
-      database: "proyectoAnalisis2",
+      database: "proyecto_analisis",
     },
     "single"
   )
 );
 app.use(express.urlencoded({ extended: false }));
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+// importing routes
+app.use(require("./routes"));
 
 // static files
 app.use(express.static(path.join(__dirname, "public")));
@@ -39,5 +49,3 @@ app.use(express.static(path.join(__dirname, "public")));
 app.listen(app.get("port"), () => {
   console.log(`server on port ${app.get("port")}`);
 });
-
-//control

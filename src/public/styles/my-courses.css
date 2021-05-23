@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap");
+
+* {
+  font-family: "Sen", sans-serif;
+}
+body{
+    background-color: #e5e5e5;
+    margin: 0;
+}
+h4{
+    border-radius: 20px;
+    padding: 0px 10px 0px 10px;
+    background-color: #272c38;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+.navbar {
+    width: 100%;
+    height: 50px;
+  
+    background: #272c38;
+    border-radius: 0px 0px 20px 20px;
+  }
+.page-container{
+    padding: 1vw;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 1vw;
+}
+.course-link{
+    border-radius: 20px;
+    padding: 0px 10px 0px 10px;
+    background-color: #2067a7;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+}
+.course-link a{
+    color: white;
+    text-decoration: none;
+}
+td{
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    text-align: center;
+    height: 65px;
+}
+.hour{
+    border: 0;
+
+}
+table{
+    margin: 10px;
+}

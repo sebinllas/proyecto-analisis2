@@ -19,6 +19,8 @@ h4{
 .calendar-container {
   display: flex;
   flex-direction: column;
+  grid-row-end: span 3 ;
+  margin-top: 10px;
 }
 #calendar {
   height: 37px;
@@ -111,27 +113,10 @@ body {
   align-self: flex-end;
   display: flex;
   align-items: center;
+  justify-content: center;
   border: 0;
   background-color: transparent;
 }
-#attach-btn {
-  /* background-image: url('/src/img/attach-logo.png') ;
-  border: 0;
-  background-color: transparent; */
-  background-color: blue;
+.post{
+  margin-top: 10px;
 }
-input::-webkit-file-upload-button {
-  background-color: aqua;
-}
-/* input[type="date"]::-webkit-inner-spin-button,
-::-webkit-calendar-picker-indicator,
-::-webkit-datetime-edit {
-  display: none;
-}
-*/
-
-input[type="date"]::-webkit-calendar-picker {
-  background: red;
-}
-
-/* mostrar la fecha seleccionada al estar en hover */
