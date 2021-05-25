@@ -10,88 +10,97 @@
   <body>
     <nav class="navbar"></nav>
     <div class="page-container">
-      <h4>Cursos</h4>
-      <h4>Horario</h4>
-      <div class="courses-list">
-        <%for(const i of allClasses){%> 
-        <div class="course-link"><a href="#"><%=i.name%></a></div>
-        <%}%>
-      </div>
 
-      <table class="cal">
-        <thead>
-          <tr>
-            <th>horas</th>
-            <th>Lun</th>
-            <th>Mar</th>
-            <th>Mié</th>
-            <th>Jue</th>
-            <th>Vie</th>
-          </tr>
-        </thead>
+      
+        <%if(!allClasses.length){%> 
+          <div class="empty-page">  <h1>No hay nada para mostrar aquí. <br> No estás matriculado en ningún curso</h1> </div>
+        <%}else{%>
+        <h4>Cursos</h4>
+        <h4>Horario</h4>
+        <div class="courses-list">
+          <%for(const i of allClasses){%> 
+            <div class="course-link"><a href="class/<%=i.id%>"><%=i.name%></a></div>
+          <%}%>
+        </div>
 
-        <tbody>
-          <tr>
-            <td class="hour">8:30</td>
-            <td>Lengua*<span> Aula</span></td>
-            <td>Mates *<span> Aula</span></td>
-            <td>Mates *<span> Aula </span></td>
-            <td>Mates *<span> Aula </span></td>
-            <td>Educación física*<span> Gimnasio</span></td>
-          </tr>
+        <table class="cal">
+          <thead>
+            <tr>
+              <th>horas</th>
+              <th>Lun</th>
+              <th>Mar</th>
+              <th>Mié</th>
+              <th>Jue</th>
+              <th>Vie</th>
+            </tr>
+          </thead>
 
-          <tr>
-            <td class="hour">9:25</td>
-            <td>Inglés*<span> Aula</span></td>
-            <td>Mates *<span> Aula </span></td>
-            <td>Musica *<span> Aula musica</span></td>
-            <td>Inglés*<span> Aula</span></td>
-            <td>Lengua *<span> Aula</span></td>
-          </tr>
-          <tr>
-            <td class="hour">10:20</td>
-            <td>Lengua*<span> Aula</span></td>
-            <td>Mates *<span> Aula </span></td>
-            <td>Lengua*<span>Aula</span></td>
-            <td>Mates *<span> Aula </span></td>
-            <td>Mates *<span> Aula </span></td>
-          </tr>
-          <tr>
-            <td class="hour">11:10</td>
-            <td>Recreo *<span> Patio</span></td>
-            <td>Recreo *<span> Patio</span></td>
-            <td>Recreo *<span> Patio</span></td>
-            <td>Recreo *<span> Patio</span></td>
-            <td>Recreo *<span> Patio</span></td>
-          </tr>
+          <tbody>
+            <tr>
+              <td class="hour">8:30</td>
+              <td>Lengua*<span> Aula</span></td>
+              <td>Mates *<span> Aula</span></td>
+              <td>Mates *<span> Aula </span></td>
+              <td>Mates *<span> Aula </span></td>
+              <td>Educación física*<span> Gimnasio</span></td>
+            </tr>
 
-          <tr>
-            <td class="hour">11:35</td>
-            <td>Mates *<span> Aula </span></td>
-            <td>Música *<span> Aula música</span></td>
-            <td>Lengua *<span> Aula</span></td>
-            <td>Tecnología *<span> Info2</span></td>
-            <td>Mates *<span> Aula </span></td>
-          </tr>
+            <tr>
+              <td class="hour">9:25</td>
+              <td>Inglés*<span> Aula</span></td>
+              <td>Mates *<span> Aula </span></td>
+              <td>Musica *<span> Aula musica</span></td>
+              <td>Inglés*<span> Aula</span></td>
+              <td>Lengua *<span> Aula</span></td>
+            </tr>
+            <tr>
+              <td class="hour">10:20</td>
+              <td>Lengua*<span> Aula</span></td>
+              <td>Mates *<span> Aula </span></td>
+              <td>Lengua*<span>Aula</span></td>
+              <td>Mates *<span> Aula </span></td>
+              <td>Mates *<span> Aula </span></td>
+            </tr>
+            <tr>
+              <td class="hour">11:10</td>
+              <td>Recreo *<span> Patio</span></td>
+              <td>Recreo *<span> Patio</span></td>
+              <td>Recreo *<span> Patio</span></td>
+              <td>Recreo *<span> Patio</span></td>
+              <td>Recreo *<span> Patio</span></td>
+            </tr>
 
-          <tr>
-            <td class="hour">12:30</td>
-            <td>Mates *<span> Aula </span></td>
-            <td>Tecnología *<span> Info2</span></td>
-            <td>Lengua *<span> Aula</span></td>
-            <td>Tecnología *<span> Info2</span></td>
-            <td>Mates *<span> Aula </span></td>
-          </tr>
-          <tr>
-            <td class="hour">13:25</td>
-            <td>Mates *<span> Aula </span></td>
-            <td>Tecnología *<span> Info2</span></td>
-            <td>Lengua *<span> Aula</span></td>
-            <td>Mates</td>
-            <td>Lengua</td>
-          </tr>
-        </tbody>
-      </table>
+            <tr>
+              <td class="hour">11:35</td>
+              <td>Mates *<span> Aula </span></td>
+              <td>Música *<span> Aula música</span></td>
+              <td>Lengua *<span> Aula</span></td>
+              <td>Tecnología *<span> Info2</span></td>
+              <td>Mates *<span> Aula </span></td>
+            </tr>
+
+            <tr>
+              <td class="hour">12:30</td>
+              <td>Mates *<span> Aula </span></td>
+              <td>Tecnología *<span> Info2</span></td>
+              <td>Lengua *<span> Aula</span></td>
+              <td>Tecnología *<span> Info2</span></td>
+              <td>Mates *<span> Aula </span></td>
+            </tr>
+            <tr>
+              <td class="hour">13:25</td>
+              <td>Mates *<span> Aula </span></td>
+              <td>Tecnología *<span> Info2</span></td>
+              <td>Lengua *<span> Aula</span></td>
+              <td>Mates</td>
+              <td>Lengua</td>
+            </tr>
+          </tbody>
+        </table>
+
+      <% } %> 
+
+
     </div>
   </body>
 </html>

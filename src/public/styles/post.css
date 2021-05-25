@@ -10,6 +10,7 @@ h4{
   padding: 0 2vw 2vw 2vw;
   display: grid;
   grid-template-columns: 1fr 4fr;
+  grid-template-columns: ;
   gap: 1.2vw;
 }
 #new-post {
@@ -19,8 +20,8 @@ h4{
 .calendar-container {
   display: flex;
   flex-direction: column;
-  grid-row-end: span 3 ;
   margin-top: 10px;
+  grid-row-start: 3;
 }
 #calendar {
   height: 37px;
@@ -83,10 +84,11 @@ body {
   padding: 0px 10px 0px 10px;
   background-color: white;
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+  grid-column-end: -1;
   /* margin-bottom: 20px;
   margin-top: 10px; */
 }
-#new-post {
+#new-post form {
   display: flex;
   align-items: center;
   padding: 5px 10px 5px 10px;
@@ -119,4 +121,16 @@ body {
 }
 .post{
   margin-top: 10px;
+}
+.empty-page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15vh;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.empty-page h1{
+  text-align: center;
+  color: gray;
 }

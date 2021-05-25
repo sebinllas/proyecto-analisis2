@@ -7,28 +7,38 @@
     <title>Document</title>
     <link rel="stylesheet" href='/styles/post.css' />
     <script src="https://kit.fontawesome.com/f95e98d0e6.js" crossorigin="anonymous"></script>
+    <style>
+      .calendar-container{
+        grid-row-end: span <%=posts.length%>;
+      } ;
+    </style>
   </head>
   <body>
     <nav class="navbar"></nav>
     <div class="page-container">
       <div class="header" id="course-header">
         <h4>ESTE ES EL NOMBRE DEL CUSRO</h4></div>
+
       <div class="text-container" id="new-post">
-        <textarea
-          class="autoExpand"
-          rows="1"
-          data-min-rows="1"
-          placeholder="write a comment"
-          autofocus
-        ></textarea>
-        <input type="file" id="attach-btn" hidden />
-        <label for="attach-btn" class="submit-btn">
-          <!-- <img src="/src/img/attach-logo.png" alt="" class="send-logo" /> -->
-          <i class="fas fa-paperclip fa-lg"></i>
-        </label>
-        <button type="submit" class="submit-btn">
-          <i class="fas fa-share fa-lg"></i>
-        </button>
+        <form action="/post/<%=posts[0].class%> " method="post">
+          <textarea
+            name = "message"
+            class="autoExpand"
+            rows="1"
+            data-min-rows="1"
+            placeholder="Di algo a tu clase"
+            autofocus
+          ></textarea>
+          <input type="file" id="attach-btn" hidden />
+          <label for="attach-btn" class="submit-btn">
+            <!-- <img src="/src/img/attach-logo.png" alt="" class="send-logo" /> -->
+            <i class="fas fa-paperclip fa-lg"></i>
+          </label>
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-share fa-lg"></i>
+          </button>          
+        </form> 
+
       </div>
       <div class="calendar-container">
         <div class="header" id="calendar-header">
@@ -36,36 +46,44 @@
         </div>
         <input type="date" name="" id="calendar" class="text-container" />
       </div>
-      <% for(var i=0; i<posts.length; i++){ %>
-      <div class="post">
-        <div class="text-container">
-          <div class="post-owner">
-            <img
-              src="https://i.pravatar.cc/300"
-              alt="profile"
-              class="profile-pic"
-            />
-            <h4><%= posts[i].ownerName %></h4>
+      <%if(posts[0].content != ''){%>
+        <% for(var i=0; i<posts.length; i++){ %>
+        <div class="post">
+          <div class="text-container">
+            <div class="post-owner">
+              <img
+                src="https://i.pravatar.cc/300"
+                alt="profile"
+                class="profile-pic"
+              />
+              <h4><%= posts[i].ownerName %></h4>
+            </div>
+            <p>
+              <%=posts[i].content %>
+            </p>
           </div>
-          <p>
-            <%=posts[i].content %>
-          </p>
+          <form action="/comment" method="post">
+            <div class="text-container" id="comment-container">
+              <textarea
+                class="autoExpand"
+                rows="1"
+                data-min-rows="1"
+                placeholder="Haz un comentario"
+                autofocus
+              ></textarea>
+              <button type="submit" class="submit-btn">
+                <i class="fas fa-share fa-lg"></i>
+              </button>
+            </div>
+          </form>
         </div>
-        <form action="/comment" method="post">
-          <div class="text-container" id="comment-container">
-            <textarea
-              class="autoExpand"
-              rows="1"
-              data-min-rows="1"
-              placeholder="write a comment"
-              autofocus
-            ></textarea>
-            <button type="submit" class="submit-btn">
-              <i class="fas fa-share fa-lg"></i>
-            </button>
-          </div>
-        </form>
-      </div>
+        <%}%>
+      <%}else{%>
+        <div class="empty-page">
+          <h1>
+            No hay nada para mostrar aquí. <br>:( <br>¡Haz una publicación!
+          </h1>
+        </div>
       <%}%>
     </div>
   </body>
