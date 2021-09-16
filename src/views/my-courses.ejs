@@ -12,13 +12,13 @@
     <div class="page-container">
 
       
-        <%if(!allClasses.length){%> 
+        <%if(!classes.length){%> 
           <div class="empty-page">  <h1>No hay nada para mostrar aquí. <br> No estás matriculado en ningún curso</h1> </div>
         <%}else{%>
         <h4>Cursos</h4>
         <h4>Horario</h4>
         <div class="courses-list">
-          <%for(const i of allClasses){%> 
+          <%for(const i of classes){%> 
             <div class="course-link"><a href="class/<%=i.id%>"><%=i.name%></a></div>
           <%}%>
         </div>

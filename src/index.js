@@ -17,6 +17,7 @@ app.engine("html", require("ejs").renderFile);
 
 // middlewares
 app.use(morgan("dev"));
+app.use(express.json())
 app.use(
   myConnection(
     mysql,

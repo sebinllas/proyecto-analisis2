@@ -9,8 +9,7 @@ h4{
 .page-container {
   padding: 0 2vw 2vw 2vw;
   display: grid;
-  grid-template-columns: 1fr 4fr;
-  grid-template-columns: ;
+  grid-template-columns: 2fr 5fr;
   gap: 1.2vw;
 }
 #new-post {
@@ -47,6 +46,7 @@ h4{
   margin-top: 15px;
   margin-bottom: 0%;
   min-height: 50px;
+  background-color: #2067A7;
 }
 .navbar {
   width: 100%;
@@ -121,6 +121,7 @@ body {
 }
 .post{
   margin-top: 10px;
+  padding-bottom: 10px;
 }
 .empty-page{
   display: flex;
@@ -133,4 +134,21 @@ body {
 .empty-page h1{
   text-align: center;
   color: gray;
+}
+.post-date{
+  margin-bottom: 10px;
+  color: gray;
+  font-size: small;
+}
+.posts-container{
+  display: flex;
+  flex-direction: column;
+}
+#teacher-post-options{
+  width: fit-content;
+  margin-top: 5px;
+  margin: auto;
+  margin-top: 5px;
+  padding: 0 10px 0 10px;
+  text-align: center;
 }
