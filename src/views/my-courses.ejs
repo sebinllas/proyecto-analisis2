@@ -1,26 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles/my-courses.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <nav class="navbar"></nav>
-    <div class="page-container">
 
-      
-        <%if(!classes.length){%> 
-          <div class="empty-page">  <h1>No hay nada para mostrar aquí. <br> No estás matriculado en ningún curso</h1> </div>
-        <%}else{%>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/styles/my-courses.css" />
+  <title>Document</title>
+</head>
+    <% 
+    const classes = data.classes
+    const schedule = data.schedule 
+    %> 
+    <script>
+      console.log('data:   ',"<%=data%>")
+    </script>
+<body>
+  <nav class="navbar"></nav>
+  <div class="page-container">
+
+
+    <%if(!classes.length){%>
+      <div class="empty-page">
+        <h1>No hay nada para mostrar aquí. <br> No estás matriculado en ningún curso</h1>
+      </div>
+      <%}else{%>
         <h4>Cursos</h4>
         <h4>Horario</h4>
         <div class="courses-list">
-          <%for(const i of classes){%> 
-            <div class="course-link"><a href="class/<%=i.id%>"><%=i.name%></a></div>
-          <%}%>
+          
+            <%for(const i of classes){%>
+              <div class="course-link"><a href="class/<%=i.id%>">
+                  <%=i.name%>
+                </a></div>
+              <% %>
+
+                <%}%>
+                  <% 
+                    let days=['Lunes', 'Martes' , 'Miercoles' , 'Jueves' , 'Viernes' , 'Sabado' , 'Domingo' ] 
+                    let hours=['06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00']
+                  %>
+                    <table>
+                      <tbody>
+                        <% for(const day of days){%>
+                          <tr>
+                            <%for(const hour of hours){ %>
+                              <td>
+                                <%= schedule[day][hour] %> 
+                              </td>
+                              <% } %>
+                          </tr>
+
+                          <%}%>
+                      </tbody>
+
+                    </table>
+
+
         </div>
 
         <table class="cal">
@@ -98,9 +134,12 @@
           </tbody>
         </table>
 
-      <% } %> 
+        <% } %>
 
+          <script>
+            console.log('classes: ', "<%=classes%>");
+          </script>
+  </div>
+</body>
 
-    </div>
-  </body>
 </html>

@@ -1,5 +1,6 @@
 const path = require('path');
 const util = require('util');
+var moment = require('moment');
 const timeago = require('timeago.js');
 const control = {}
 
@@ -99,13 +100,34 @@ control.handleMyCourses = (req, res) => {
 	}
 	req.getConnection((err, conn) => {
 		conn.query(
-			'SELECT * FROM users_classes INNER JOIN classes ON users_classes.user = ? AND users_classes.class = classes.id',
+			'SELECT * FROM users_classes INNER JOIN classes'+
+			' ON users_classes.user = ? AND users_classes.class = classes.id'+
+			' INNER JOIN schedules ON schedules.id = classes.schedule',
 			[req.session.user.id],
 			(err, classes) => {
 				if (classes.length == 0) {
 					res.render('my-courses', { classes: [] });
 				}
-				res.render('my-courses', { classes });
+				console.log(classes);
+				let days = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
+				let hours = ['06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00']
+				let schedule = {Lunes:{}, Martes:{}, Miercoles:{}, Jueves:{}, Viernes:{}}
+				for(const class_ of classes){
+					
+					for(const day of days){
+						console.log(class_[day]); 
+						if(class_[day]){
+							for(let i = 0; i<class_.duration; i++){
+								//console.log(moment(class_.init_hour, 'HH:mm:ss' ).add(i, 'hour').hour());
+								let time = moment(class_.init_hour,'HH:mm:ss').add(i, 'hours');
+								//console.log(time.format('HH:mm'))
+								schedule[day][time.format('HH:mm')] = class_.name;
+							}
+							 
+						}
+					}
+				}console.log(schedule)
+				res.render('my-courses', { data:{classes, schedule} });
 			}
 		);
 	});
