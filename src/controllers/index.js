@@ -111,7 +111,7 @@ control.handleMyCourses = (req, res) => {
 				console.log(classes);
 				let days = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
 				let hours = ['06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00']
-				let schedule = {Lunes:{}, Martes:{}, Miercoles:{}, Jueves:{}, Viernes:{}}
+				let schedule = {}
 				for(const class_ of classes){
 					
 					for(const day of days){
@@ -121,13 +121,17 @@ control.handleMyCourses = (req, res) => {
 								//console.log(moment(class_.init_hour, 'HH:mm:ss' ).add(i, 'hour').hour());
 								let time = moment(class_.init_hour,'HH:mm:ss').add(i, 'hours');
 								//console.log(time.format('HH:mm'))
-								schedule[day][time.format('HH:mm')] = class_.name;
+								if(!schedule[time.format('HH:mm')]){
+									schedule[time.format('HH:mm')]={}	
+								}
+								
+								schedule[time.format('HH:mm')][day] = class_.name;
 							}
 							 
 						}
 					}
 				}console.log(schedule)
-				res.render('my-courses', { data:{classes, schedule} });
+				res.render('my-courses', { data:{'classes':classes, 'schedule':schedule} });
 			}
 		);
 	});

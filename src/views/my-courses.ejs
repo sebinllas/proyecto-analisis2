@@ -8,138 +8,64 @@
   <link rel="stylesheet" href="/styles/my-courses.css" />
   <title>Document</title>
 </head>
-    <% 
-    const classes = data.classes
-    const schedule = data.schedule 
-    %> 
-    <script>
-      console.log('data:   ',"<%=data%>")
-    </script>
+<% const classes=data.classes
+const schedule=data.schedule %>
+
 <body>
   <nav class="navbar"></nav>
   <div class="page-container">
 
 
     <%if(!classes.length){%>
-      <div class="empty-page">
-        <h1>No hay nada para mostrar aquí. <br> No estás matriculado en ningún curso</h1>
-      </div>
-      <%}else{%>
-        <h4>Cursos</h4>
-        <h4>Horario</h4>
-        <div class="courses-list">
-          
-            <%for(const i of classes){%>
-              <div class="course-link"><a href="class/<%=i.id%>">
-                  <%=i.name%>
-                </a></div>
-              <% %>
+    <div class="empty-page">
+      <h1>No hay nada para mostrar aquí. <br> No estás matriculado en ningún curso</h1>
+    </div>
+    <%}else{%>
+    <h4>Cursos</h4>
+    <h4>Horario</h4>
+    <div class="courses-list">
+      <%for(const i of classes){%>
+      <div class="course-link"><a href="class/<%=i.id%>">
+          <%=i.name%>
+        </a></div>
+      <%}%>
+    </div>      
+    <% 
+      let days=['Lunes', 'Martes' , 'Miercoles' , 'Jueves' , 'Viernes' , 'Sabado' , 'Domingo' ] 
+      let hours=['06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00']
+    %>
+      <table>
+        <tbody>
+          <tr>
+            <th>hour</th>
+             <%days.forEach(day => {%>
+               <th><%=day%></th>
+            <% });%>
+          </tr>
 
-                <%}%>
-                  <% 
-                    let days=['Lunes', 'Martes' , 'Miercoles' , 'Jueves' , 'Viernes' , 'Sabado' , 'Domingo' ] 
-                    let hours=['06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00']
-                  %>
-                    <table>
-                      <tbody>
-                        <% for(const day of days){%>
-                          <tr>
-                            <%for(const hour of hours){ %>
-                              <td>
-                                <%= schedule[day][hour] %> 
-                              </td>
-                              <% } %>
-                          </tr>
-
-                          <%}%>
-                      </tbody>
-
-                    </table>
+         
+            <% for(const hour of hours){%>
+              <% if(schedule[hour]){ %>
+              <tr>
+                <th><%=hour%></th>
+                <% for(const day of days){ %>
+                  
+                <td>
+                  <%= schedule[hour][day] %>
+                </td>
+                  <%} %>
 
 
-        </div>
-
-        <table class="cal">
-          <thead>
-            <tr>
-              <th>horas</th>
-              <th>Lun</th>
-              <th>Mar</th>
-              <th>Mié</th>
-              <th>Jue</th>
-              <th>Vie</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td class="hour">8:30</td>
-              <td>Lengua*<span> Aula</span></td>
-              <td>Mates *<span> Aula</span></td>
-              <td>Mates *<span> Aula </span></td>
-              <td>Mates *<span> Aula </span></td>
-              <td>Educación física*<span> Gimnasio</span></td>
-            </tr>
-
-            <tr>
-              <td class="hour">9:25</td>
-              <td>Inglés*<span> Aula</span></td>
-              <td>Mates *<span> Aula </span></td>
-              <td>Musica *<span> Aula musica</span></td>
-              <td>Inglés*<span> Aula</span></td>
-              <td>Lengua *<span> Aula</span></td>
-            </tr>
-            <tr>
-              <td class="hour">10:20</td>
-              <td>Lengua*<span> Aula</span></td>
-              <td>Mates *<span> Aula </span></td>
-              <td>Lengua*<span>Aula</span></td>
-              <td>Mates *<span> Aula </span></td>
-              <td>Mates *<span> Aula </span></td>
-            </tr>
-            <tr>
-              <td class="hour">11:10</td>
-              <td>Recreo *<span> Patio</span></td>
-              <td>Recreo *<span> Patio</span></td>
-              <td>Recreo *<span> Patio</span></td>
-              <td>Recreo *<span> Patio</span></td>
-              <td>Recreo *<span> Patio</span></td>
-            </tr>
-
-            <tr>
-              <td class="hour">11:35</td>
-              <td>Mates *<span> Aula </span></td>
-              <td>Música *<span> Aula música</span></td>
-              <td>Lengua *<span> Aula</span></td>
-              <td>Tecnología *<span> Info2</span></td>
-              <td>Mates *<span> Aula </span></td>
-            </tr>
-
-            <tr>
-              <td class="hour">12:30</td>
-              <td>Mates *<span> Aula </span></td>
-              <td>Tecnología *<span> Info2</span></td>
-              <td>Lengua *<span> Aula</span></td>
-              <td>Tecnología *<span> Info2</span></td>
-              <td>Mates *<span> Aula </span></td>
-            </tr>
-            <tr>
-              <td class="hour">13:25</td>
-              <td>Mates *<span> Aula </span></td>
-              <td>Tecnología *<span> Info2</span></td>
-              <td>Lengua *<span> Aula</span></td>
-              <td>Mates</td>
-              <td>Lengua</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <% } %>
-
-          <script>
-            console.log('classes: ', "<%=classes%>");
-          </script>
-  </div>
+              </tr>
+              <%}%> 
+            <%}%>
+        </tbody>
+      </table>
+      <% } %>
+      <script>
+        console.log('classes: ', "<%=classes%>");
+      </script>
+    </div>
 </body>
 
 </html>
