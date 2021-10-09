@@ -2,6 +2,8 @@ const path = require('path');
 const util = require('util');
 var moment = require('moment');
 const timeago = require('timeago.js');
+const edjsHTML = require("editorjs-html");
+const edjsParser = edjsHTML();
 const control = {}
 
 control.handleLogin = (req, res) => {
@@ -79,12 +81,30 @@ control.handleClass = (req, res) => {
 						posts.reverse();
 						for (const i of posts) {
 							var date = timeago.format(i.date, 'es_ES');
+							let content = '';
+							try {
+								console.log("parsed JSON: ", JSON.parse(i.content).blocks);
+								console.log('Blocks parsed to html: ', edjsParser.parse(JSON.parse(i.content)));
+
+								for (const block of edjsParser.parse(JSON.parse(i.content))) {
+									if (typeof (block) === 'string') {
+										content += block
+									}
+
+								}
+							} catch (e) {
+								console.log('errror parsenado JSON: ', e);
+								content = `<p>${i.content}</p>`
+							}
+
+
 							i.date = date;
+							i.content = content;
 						}
 						res.render('posts', { posts, className: className[0].name });
 					});
 
-					
+
 				} else {
 					res.render('posts', { posts: [{ content: '', class: req.params.class_id }] });
 				}
@@ -100,8 +120,8 @@ control.handleMyCourses = (req, res) => {
 	}
 	req.getConnection((err, conn) => {
 		conn.query(
-			'SELECT * FROM users_classes INNER JOIN classes'+
-			' ON users_classes.user = ? AND users_classes.class = classes.id'+
+			'SELECT * FROM users_classes INNER JOIN classes' +
+			' ON users_classes.user = ? AND users_classes.class = classes.id' +
 			' INNER JOIN schedules ON schedules.id = classes.schedule',
 			[req.session.user.id],
 			(err, classes) => {
@@ -109,29 +129,28 @@ control.handleMyCourses = (req, res) => {
 					res.render('my-courses', { classes: [] });
 				}
 				console.log(classes);
-				let days = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
-				let hours = ['06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00']
+				let days = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado']
 				let schedule = {}
-				for(const class_ of classes){
-					
-					for(const day of days){
-						console.log(class_[day]); 
-						if(class_[day]){
-							for(let i = 0; i<class_.duration; i++){
+				for (const class_ of classes) {
+
+					for (const day of days) {
+						console.log(class_[day]);
+						if (class_[day]) {
+							for (let i = 0; i < class_.duration; i++) {
 								//console.log(moment(class_.init_hour, 'HH:mm:ss' ).add(i, 'hour').hour());
-								let time = moment(class_.init_hour,'HH:mm:ss').add(i, 'hours');
+								let time = moment(class_.init_hour, 'HH:mm:ss').add(i, 'hours');
 								//console.log(time.format('HH:mm'))
-								if(!schedule[time.format('HH:mm')]){
-									schedule[time.format('HH:mm')]={}	
+								if (!schedule[time.format('HH:mm')]) {
+									schedule[time.format('HH:mm')] = {}
 								}
-								
+
 								schedule[time.format('HH:mm')][day] = class_.name;
 							}
-							 
+
 						}
 					}
-				}console.log(schedule)
-				res.render('my-courses', { data:{'classes':classes, 'schedule':schedule} });
+				} console.log(schedule)
+				res.render('my-courses', { data: { 'classes': classes, 'schedule': schedule } });
 			}
 		);
 	});
@@ -141,7 +160,7 @@ control.handlePost = (req, res) => {
 	if (!req.session.loggedin) {
 		res.redirect('/login');
 	}
-	console.log('req.body: ',(req.body));
+	console.log('req.body: ', (req.body));
 	console.log(req.params);
 	req.getConnection((err, conn) => {
 		conn.query(
@@ -155,5 +174,23 @@ control.handlePost = (req, res) => {
 		);
 	});
 };
+
+control.handleCourseActivities = (req, res)=>{
+	if (!req.session.loggedin) {
+		res.redirect('/login');
+	}
+	req.getConnection((err, conn) => {
+		conn.query(
+			'SELECT * from ',
+			['NULL', req.body.message, req.session.user.id, parseInt(req.params.class)],
+			(err, post) => {
+				console.log(err);
+				console.log(post);
+				res.redirect(`/class/${req.params.class}`);
+			}
+		);
+	});
+
+}
 
 module.exports = control;

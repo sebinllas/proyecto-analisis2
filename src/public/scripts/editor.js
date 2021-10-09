@@ -1,6 +1,9 @@
+const saveButton = document.getElementById('saveButton');
+const msgTexArea = document.getElementById('mesaage-textarea')
 var editor = new EditorJS({
   readOnly: false,
   holder: 'editorjs',
+  placeholder: 'Dí algo a tu clase',
   tools: {
     header: {
       class: Header,
@@ -55,31 +58,16 @@ var editor = new EditorJS({
     saveButton.click();
   },
   onChange: function (api, block) {
-    console.log('something changed', block);
+    
   }
 });
-const saveButton = document.getElementById('saveButton');
+
 saveButton.addEventListener('click', function () {
   editor.save()
     .then((savedData) => {
       console.log('datos a guardar: ',savedData);
-      fetch('/post/3', {
-        method: 'POST',
-        body: JSON.stringify({ message: { savedData } })
-      }).then(function (response) {
-        if (response.ok) {
-          console.log(response);
-        } else {
-          throw "Error en la llamada Ajax";
-        }
+      msgTexArea.innerText = JSON.stringify(savedData)
 
-      })
-        .then(function (texto) {
-          console.log(texto);
-        })
-        .catch(function (err) {
-          console.log(err);
-        });
     })
     .catch((error) => {
       console.error('Saving error', error);

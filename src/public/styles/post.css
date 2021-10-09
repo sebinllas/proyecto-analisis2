@@ -77,6 +77,7 @@ body {
 .text-container p {
   margin: 0;
   margin-bottom: 10px;
+  
 }
 .text-container {
   border: 1px solid rgba(0, 0, 0, 0.25);
@@ -88,12 +89,30 @@ body {
   /* margin-bottom: 20px;
   margin-top: 10px; */
 }
-#new-post form {
+#new-post-input form{
   display: flex;
-  align-items: center;
-  padding: 5px 10px 5px 10px;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
+.codex-editor__redactor{
+  padding: 0 !important; 
+  
+}
+#editorjs{
+  width: 80%;
+  display: inline-block;
+}
+#new-post form {
+  padding: 5px 10px 5px 10px;
+}
+#submit-btn{
+  display: inline;
+}
+.buttons{
+  align-self: flex-end;
+}
+
 #comment-container {
   display: flex;
   align-items: center;
@@ -108,14 +127,7 @@ body {
   border: 0;
   resize: unset;
 }
-.send-logo {
-  width: 25px;
-}
 .submit-btn {
-  align-self: flex-end;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border: 0;
   background-color: transparent;
 }
