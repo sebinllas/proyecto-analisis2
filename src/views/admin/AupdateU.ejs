@@ -1,0 +1,50 @@
+<%- include("./panelPartials/header.ejs")  %> 
+     <!--inicio /#page-content-wrapper -->
+        <% if(login){ %>
+       
+        <div class="p-2">
+            <div class="container bg-white col-8">
+               
+                    <form class="px-4 py-3" action="/admin/userU"  method="post">
+                        <input type="hidden" name="id" value="<%=data.id%>">
+                      <div class="form-group">
+                        <label for="usuario">Usuario</label>
+                        <input type="text" name="usuario" class="form-control" placeholder="usuario" value="<%=data.userName%>" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre" class="form-control" placeholder="nombre" value="<%=data.fullName%>" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email"  name="email" class="form-control" placeholder="email" value="<%=data.email%>" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="text" name="password" class="form-control" placeholder="contraseña" value="<%=data.password%>" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="role">Role</label>
+                        <select class="form-control form-control-sm" name="role" required>
+                          <option >--Seleccionar--</option>
+                          <option <%=data.role == 'estudiante' ? "selected" : '' %>  value="estudiante">Estudiante</option>
+                          <option <%=data.role == 'admin' ? "selected" : '' %> value="admin">Admin</option>
+                          <option <%=data.role == 'profesor' ? "selected" : '' %> value="profesor">Profesor</option>
+                        </select>
+                      </div>
+                      <br>
+                            <button type="submit" class="btn btn-primary ">Editar</button>
+                    </form>
+                  
+            </div>     
+        </div>
+        <style>
+            .u-active{
+                color:var(--main-text-color);
+            }
+        </style>
+         <% }else{ window.location=" "}%>  <!--{ver como redireccionar} -->
+    <!--fin /#page-content-wrapper -->
+
+    
+<%- include("./panelPartials/footer.ejs")  %> 

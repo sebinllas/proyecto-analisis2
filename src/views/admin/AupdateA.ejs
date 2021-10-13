@@ -1,0 +1,68 @@
+<%- include("./panelPartials/header.ejs")  %> 
+     <!--inicio /#page-content-wrapper -->
+        <% if(login){ %>
+       
+        <div class="p-2">
+            <div class="container bg-white col-8">
+               
+                    <form class="px-4 py-3" action="/admin/asignaturaU"  method="post">
+                        <input type="hidden" name="id" value="<%=data.id%>">
+                    
+                      <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre" class="form-control" placeholder="nombre" value="<%=data.name%>" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="profesor">Profesor</label>
+                        <select class="form-control form-control-sm" name="profesor" required>
+                          <option selected>--Seleccionar--</option>
+                            <option value="1">Ricardo </option>
+                            <option value="2">Pedro </option>
+                            <option value="8">julio</option>
+                            <option value="12">Ana</option>
+                          </select>
+                        </div>
+                          
+                      <div class="form-group">
+                        <label for="grupo">Grupo</label>
+                        <input type="text" name="grupo" class="form-control" placeholder="grupo" value="<%=data.group%>" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="hora">Hora</label>
+                        <select class="form-control form-control-sm" name="hora" required>
+                            <option >--Seleccionar--</option>
+                            <!--toca hacer el option para todos-->
+                          <% for(var i = 6; i <= 12; i++) { %>
+                            <option   value="<%=i%>"> <%=i%> </option>
+                            <% } %> 
+                        </select>
+                      </div>
+    
+                      <div class="form-group">
+                        <label for="dia">Dia</label>
+                        <select class="form-control form-control-sm" name="dia" required>
+                            <option selected>--Seleccionar--</option>
+                            <% dias = ["Lunes","Martes","Miercoles","Jueves","Viernes"] %> 
+                          <% for(var i = 0; i < dias.length; i++) { %>
+                            <option value="<%=dias[i]%> "> <%=dias[i]%> </option>
+                            <% } %> 
+                        </select>
+                      </div>
+                      
+                      <br>
+                            <button type="submit" class="btn btn-primary ">Editar</button>
+                    </form>
+                  
+            </div>     
+        </div>
+        <style>
+            .a-active{
+                color:var(--main-text-color);
+            }
+        </style>
+         <% }else{ window.location=" "}%>  <!--{ver como redireccionar} -->
+    <!--fin /#page-content-wrapper -->
+
+    
+<%- include("./panelPartials/footer.ejs")  %> 

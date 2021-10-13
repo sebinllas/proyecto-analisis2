@@ -1,0 +1,38 @@
+
+ <%- include("./panelPartials/header.ejs")  %> 
+ <!--inicio /#page-content-wrapper -->
+    <% if(login){ %>
+   
+    <div class="p-2">
+        <div class="container bg-white col-8">
+            
+            <form class="px-4 py-3" action="/admin/notasU"  method="post">
+                
+                <div class="form-group">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" name="usuario" class="form-control" placeholder="Usuario" value="<%=data.user%>" required>
+                  </div>
+                    <div class="form-group">
+                      <label for="clase">Clase</label>
+                      <input type="text" name="clase" class="form-control" placeholder="clase" value="<%=data.class%>" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="calificacion">Calificacion</label>
+                      <input type="text"  name="calificacion" class="form-control" placeholder="Calificacion" value="<%=data.qualifications%>" required>
+                    </div>
+                  <br>
+                        <button type="submit" class="btn btn-primary ">Editar</button>
+                </form>
+              
+        </div>     
+    </div>
+    <style>
+        .n-active{
+            color:var(--main-text-color);
+        }
+    </style>
+     <% }else{ window.location=" "}%>  <!--{ver como redireccionar} -->
+<!--fin /#page-content-wrapper -->
+
+
+<%- include("./panelPartials/footer.ejs")  %> 

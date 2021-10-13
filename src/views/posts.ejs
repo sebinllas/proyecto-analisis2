@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +16,9 @@
 </head>
 
 <body>
-  <nav class="navbar"></nav>
+  <nav class="navbar">
+    <a href="/admin/logout">Logout</a>
+  </nav>
   <div class="page-container">
     <div class="header" id="course-header">
       <h4>
@@ -27,41 +28,35 @@
 
     <div id="new-post">
       <div class="text-container" id="new-post-input">
-              <form action="/post/<%=posts[0].class%> " method="post">
+        <form id="post-form" action="/post/<%=posts[0].class%> " method="post">
 
-                <textarea
-                  style="display: none;"
-                  id = "mesaage-textarea"
-                  name = "message"
-                  class="autoExpand"
-                  rows="1"
-                  data-min-rows="1"
-                  placeholder="Di algo a tu clase"
-                  autofocus
-                ></textarea>
+          <textarea style="display: none;" id="mesaage-textarea" name="message" class="autoExpand" rows="1"
+            data-min-rows="1" placeholder="Di algo a tu clase" autofocus></textarea>
 
-                <div id="editorjs"></div>
-                <div class='buttons'> 
-                  <input type="file" id="attach-btn" hidden />
-                  <label for="attach-btn" class="submit-btn">
-                    
-                    <i class="fas fa-paperclip fa-lg"></i>
-                  </label>
-                  <button type="submit" class="submit-btn">
-                    <i class="fas fa-share fa-lg"></i>
-                  </button>  
-                </div>
-        
-              </form> 
-            </div>
-            
-            <div id="teacher-post-options" class="text-container">
-              <label for="assignment">tarea</label>
-              <input type="checkbox" id="assignment" name="assignment" >
-            </div>
-        <!-- <div  class='text-container' id="editorjs"></div> -->
+          <div id="editorjs"></div>
+          <div id="assignment-options">
+            <label>
+              <input type="checkbox" id="assignment" name="assignment">
+              Actividad Evaluativa
+            </label>
+            <label>
+              Fecha de entrega
+              <input type="datetime-local" name="deadline" id="assignment-deadline">
+            </label>
+            <input type="text" name="description" id="assignment-description" cols="30" rows="10"
+              placeholder="Descripción">
+          </div>
+          <div class='buttons'>
+            <button id="submit-btn" type="submit" class="submit-btn">
+              Enviar <i class="fas fa-share fa-lg"></i>
+            </button>
+          </div>
 
-      <button type="submit" id="saveButton">Enviar</button>
+        </form>
+      </div>
+      <button id="new-assignment-btn">nueva actividad</button>
+
+      <!-- <div  class='text-container' id="editorjs"></div> -->
     </div>
 
 
@@ -76,7 +71,7 @@
       <div class="posts-container">
         <% for(var i=0; i<posts.length; i++){ %>
 
-          <div class="post" >
+          <div class="post">
             <div class="text-container">
               <div class="post-owner">
                 <img src="https://i.pravatar.cc/300" alt="profile" class="profile-pic" />
@@ -91,16 +86,6 @@
                 <%= posts[i].date %>
               </div>
             </div>
-            <form action="/comment" method="post">
-              <div class="text-container" id="comment-container">
-                <textarea class="autoExpand" rows="1" data-min-rows="1" placeholder="Haz un comentario"
-                  autofocus></textarea>
-
-                <button type="submit" class="submit-btn">
-                  <i class="fas fa-share fa-lg"></i>
-                </button>
-              </div>
-            </form>
           </div>
           <%}%>
       </div>
@@ -118,21 +103,13 @@
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script><!-- Image -->
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script><!-- Delimiter -->
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script><!-- List -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script><!-- Checklist -->
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script><!-- Quote -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script><!-- Code -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script><!-- Embed -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script><!-- Table -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script><!-- Link -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script><!-- Warning -->
-
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script><!-- Marker -->
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script><!-- Inline Code -->
-
 <!-- Load Editor.js's Core -->
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
 
 <!-- Initialization -->
 <script src="/scripts/editor.js"></script>
+<script src="/scripts/assignment.js"></script>
 
 </html>

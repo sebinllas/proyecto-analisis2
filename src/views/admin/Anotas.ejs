@@ -1,0 +1,56 @@
+<%- include("./panelPartials/header.ejs")  %> 
+     <!--inicio /#page-content-wrapper -->
+        <% if(login){ %>
+            <style>
+                .n-active{
+                    color:var(--main-text-color);
+                }
+            </style>
+             <div class="p-2">
+            <div class="container bg-white ">
+                <div class="table-responsive row justify-content-center">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row pt-2">
+                                <div class="col-sm-10"><h2>Notas</b></h2></div>
+                                <div class="col-sm-2">
+                                   <a href="/admin/createN"  class="btn btn-primary"><i class="far fa-plus-square"></i>  Nuevo</a>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="col-3">usuario</th>
+                                    <th class="col-3">Clase</th>
+                                    <th class="col-3">Calificacion</th>
+                                    <th class="col-3">Acciones</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (data) { %>
+                                    <% for(var i = 0; i < data.length; i++) { %>
+                                      <tr>
+                                        <td><%= data[i].user %></td>
+                                        <td><%= data[i].class %></td>
+                                        <td><%= data[i].qualifications %></td>
+                                        <td>
+                                            <a class="edit"  href="/admin/updateN/<%=data[i].user%>" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                            <a class="delete" href="/admin/deleteN/<%=data[i].user%>" title="admin" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                        </td>
+                                      </tr>
+                                    <% } %>
+                                  <% } %>
+                                   
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>     
+        </div>
+         <% }else{ window.location="/"}%>  <!--{ver como redireccionar} -->
+    <!--fin /#page-content-wrapper -->
+
+    
+<%- include("./panelPartials/footer.ejs")  %> 

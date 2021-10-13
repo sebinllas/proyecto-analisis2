@@ -1,0 +1,50 @@
+
+ <%- include("./panelPartials/header.ejs")  %> 
+     <!--inicio /#page-content-wrapper -->
+        <% if(login){ %>
+       
+        <div class="p-2">
+            <div class="container bg-white col-8">
+               
+                    <form class="px-4 py-3" action="/admin/userI"  method="post">
+                      <div class="form-group">
+                        <label for="usuario">Usuario</label>
+                        <input type="text" name="usuario" class="form-control" placeholder="usuario" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre" class="form-control" placeholder="nombre" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email"  name="email" class="form-control" placeholder="email" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="text" name="password" class="form-control" placeholder="contraseña" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="role">Role</label>
+                        <select class="form-control form-control-sm" name="role" required>
+                          <option selected>--Seleccionar--</option>
+                          <option  value="estudiante">Estudiante</option>
+                          <option  value="admin">Admin</option>
+                          <option  value="profesor">Profesor</option>
+                        </select>
+                      </div>
+                      <br>
+                            <button type="submit" class="btn btn-primary ">Agregar</button>
+                    </form>
+                  
+            </div>     
+        </div>
+        <style>
+            .u-active{
+                color:var(--main-text-color);
+            }
+        </style>
+         <% }else{ window.location=" "}%>  <!--{ver como redireccionar} -->
+    <!--fin /#page-content-wrapper -->
+
+    
+<%- include("./panelPartials/footer.ejs")  %> 

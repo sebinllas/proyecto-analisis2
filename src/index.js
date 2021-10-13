@@ -4,6 +4,8 @@ const express = require("express"),
   mysql = require("mysql"),
   myConnection = require("express-myconnection"),
   session = require("express-session");
+//const adminRouter = require("./routes/admin");
+const router = require("./routes");
 
 const app = express();
 
@@ -39,9 +41,12 @@ app.use(
     saveUninitialized: true,
   })
 );
+//css
+app.use('/styles', express.static(__dirname  + 'public/styles'));
 
 // importing routes
-app.use(require("./routes"));
+app.use('/', router);
+//app.use('/admin',adminRouter);
 
 // static files
 app.use(express.static(path.join(__dirname, "public")));

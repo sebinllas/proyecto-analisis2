@@ -1,5 +1,7 @@
-const saveButton = document.getElementById('saveButton');
-const msgTexArea = document.getElementById('mesaage-textarea')
+const msgTexArea = document.getElementById('mesaage-textarea');
+const submitBtn = document.getElementById("submit-btn");
+const messageForm = document.getElementById('post-form');
+
 var editor = new EditorJS({
   readOnly: false,
   holder: 'editorjs',
@@ -7,10 +9,6 @@ var editor = new EditorJS({
   tools: {
     header: {
       class: Header,
-      inlineToolbar: ['marker', 'link'],
-      config: {
-        placeholder: 'Header'
-      },
       shortcut: 'CMD+SHIFT+H'
     },
     image: SimpleImage,
@@ -18,10 +16,6 @@ var editor = new EditorJS({
       class: List,
       inlineToolbar: true,
       shortcut: 'CMD+SHIFT+L'
-    },
-    checklist: {
-      class: Checklist,
-      inlineToolbar: true,
     },
     quote: {
       class: Quote,
@@ -32,41 +26,27 @@ var editor = new EditorJS({
       },
       shortcut: 'CMD+SHIFT+O'
     },
-    warning: Warning,
-    marker: {
-      class: Marker,
-      shortcut: 'CMD+SHIFT+M'
-    },
-    code: {
-      class: CodeTool,
-      shortcut: 'CMD+SHIFT+C'
-    },
     delimiter: Delimiter,
     inlineCode: {
       class: InlineCode,
       shortcut: 'CMD+SHIFT+C'
     },
-    linkTool: LinkTool,
-    embed: Embed,
-    table: {
-      class: Table,
-      inlineToolbar: true,
-      shortcut: 'CMD+ALT+T'
-    },
-  },
-  onReady: function () {
-    saveButton.click();
   },
   onChange: function (api, block) {
-    
+    editor.save()
+    .then((savedData) => {
+      msgTexArea.innerText = JSON.stringify(savedData)
+    })
   }
 });
 
-saveButton.addEventListener('click', function () {
+submitBtn.addEventListener('click', function (e) {
+  e.preventDefault();
   editor.save()
     .then((savedData) => {
       console.log('datos a guardar: ',savedData);
       msgTexArea.innerText = JSON.stringify(savedData)
+      messageForm.submit();
 
     })
     .catch((error) => {
