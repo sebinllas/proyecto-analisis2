@@ -1,31 +1,50 @@
 <%- include("./panelPartials/header.ejs")  %> 
+<style>
+    .pa-active{
+        color:var(--main-text-color);
+    }
+</style>
             <div class="container-fluid px-4">
                 <div class="row g-3 my-2">
                     <div class="col-md-3">
-                        <a href='/admin/user' class="px-5  bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
-                                <p class="fs-5">usuarios</p>
+                                <h3 class="fs-2">720</h3>
+                                <p class="fs-5">Estudiantes</p>
                             </div>
                             <i class="fas fa-user-graduate fs-1 primary-text border rounded-full secondary-bg p-3"></i>
-                        </a>
+                        </div>
                     </div>
 
                     <div class="col-md-3">
-                        <a href='/admin/clases' class="px-5 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
+                                <h3 class="fs-2">4920</h3>
+                                <p class="fs-5">Profesores</p>
+                            </div>
+                            <i
+                                class="fas fa-user-tie fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                            <div>
+                                <h3 class="fs-2">3899</h3>
                                 <p class="fs-5">Cursos</p>
                             </div>
                             <i class="fas fa-chalkboard-teacher fs-1 primary-text border rounded-full secondary-bg p-3"></i>
-                        </a>
+                        </div>
                     </div>
 
                     <div class="col-md-3">
-                        <a href='/admin/actividades' class="px-5 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
                             <div>
+                                <h3 class="fs-2">%25</h3>
                                 <p class="fs-5">Asignaturas</p>
                             </div>
                             <i class="fas fa-book-open fs-1 primary-text border rounded-full secondary-bg p-3"></i>
-                        </a>
+                        </div>
                     </div>
                 </div>
 

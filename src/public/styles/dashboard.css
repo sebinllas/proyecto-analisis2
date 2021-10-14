@@ -1,9 +1,9 @@
 :root {
-    --main-bg-color:rgba(0, 0, 0, 0.25);
-    --main-text-color: rgba(0, 0, 0, 0.25);
-    --second-text-color: rgba(0, 0, 0, 0.25);
-    --second-bg-color: #ffffff;
-  }
+  --main-bg-color: #009d63;
+  --main-text-color: #009d63;
+  --second-text-color: #bbbec5;
+  --second-bg-color: #c1efde;
+}
   
   .primary-text {
     color: var(--main-text-color);
